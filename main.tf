@@ -7,7 +7,15 @@ terraform {
           version = "~> 3.0"
       }
     }
+    backend "s3" {
+      encrypt = true
+      bucket = "giteepag-s3-bucket"
+      dynamodb_table = "terraform-state-lock-dynamo"
+      region = "us-east-1"
+      key = "terraform-statefile/"
+      }
 }
+
 
 # Provider Block
 provider "aws" {
